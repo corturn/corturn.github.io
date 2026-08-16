@@ -1,26 +1,23 @@
 # ============================================================
-#  Site settings — edit these, they appear all over the site.
-#  NOTE: changes to this file only show up after a restart
-#  if you're running a local preview.
+#  Site settings. Placeholders — replace with yours.
+#  If you run a local preview, restart it after editing this file.
 # ============================================================
 
-title: Cory Turnbaugh
-tagline: English & College Essay Tutoring
+title: Site Title
+tagline: Lorem Ipsum Dolor
 description: >-
-  One-on-one tutoring in English, writing, and the college essay —
-  plus a blog about the craft of writing.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+  eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 email: turnbaughcory@gmail.com
 
-# Leave both blank for a username.github.io site. Do not change
-# these unless you move the site to a project repo.
+# Leave both blank for a username.github.io site.
 url: ""
 baseurl: ""
 
 
 # ============================================================
-#  Navigation — add, remove, or reorder. This drives the menu
-#  on every page, so you only edit it here.
+#  Navigation — drives the menu on every page.
 # ============================================================
 
 nav:
@@ -35,14 +32,14 @@ nav:
 
 
 # ============================================================
-#  Build settings — you probably never need to touch these.
+#  Build settings
 # ============================================================
 
 plugins:
-  - jekyll-feed      # generates /feed.xml so people can subscribe
+  - jekyll-feed      # generates /feed.xml
   - jekyll-seo-tag   # generates page titles / social preview tags
 
-# Pretty URLs: /blog/my-post/ instead of /blog/2026/08/15/my-post.html
+# /blog/my-post/ instead of /blog/2026/08/15/my-post.html
 permalink: /blog/:title/
 
 # Every post gets the "post" layout automatically.
