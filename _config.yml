@@ -11,8 +11,9 @@ description: >-
 
 email: turnbaughcory@gmail.com
 
-# Leave both blank for a username.github.io site.
-url: ""
+# Full site address. Needed so the RSS feed and social preview tags emit
+# absolute links. baseurl stays empty for a username.github.io site.
+url: "https://corturn.github.io"
 baseurl: ""
 
 
