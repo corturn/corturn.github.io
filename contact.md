@@ -26,9 +26,9 @@ laboriosam, nisi ut aliquid ex ea commodi consequatur.
   submission itself. A free third-party service catches it and emails it to
   you — Formspree is the usual one.
 
-  To switch it on: create a form at formspree.io, delete this comment (the
-  "<!--" line above and the "-->" line at the bottom), and paste your
-  endpoint in place of the placeholder in `action`.
+  To switch it on: create a form at formspree.io, delete the comment-opening
+  line above this paragraph and the comment-closing line at the very bottom
+  of this file, then paste your endpoint over the placeholder in `action`.
 
 <form class="form" action="PASTE_YOUR_FORMSPREE_ENDPOINT_HERE" method="POST">
 
