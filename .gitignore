@@ -14,8 +14,9 @@ vendor/
 .Spotlight-V100
 .Trashes
 
-# Editor
+# Editor / tooling
 .vscode/
+.claude/
 *.swp
 
 # Working art files — keep the big originals out of the repo.

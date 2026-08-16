@@ -1,7 +1,8 @@
-# Site
+# corturn.github.io
 
-Jekyll site published with GitHub Pages. All page content is placeholder
-lorem ipsum; the styling is a neutral placeholder too.
+Jekyll site published with GitHub Pages at <https://corturn.github.io>.
+All page content is placeholder lorem ipsum; the styling is a neutral
+placeholder too.
 
 ## Layout
 
