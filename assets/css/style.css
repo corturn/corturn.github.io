@@ -14,10 +14,14 @@
 
 :root {
 
-  /* ART — painted background: assets/images/background.jpg */
-  --bg-image: url("/assets/images/background.jpg");
-  --bg-size: cover;              /* or a length like 400px to tile it */
-  --bg-repeat: no-repeat;        /* `repeat` if tiling */
+  /* ART — painted background: assets/images/background.png (has transparency,
+     so the --paper color below shows through it and around it). */
+  --bg-image: url("/assets/images/background.png");
+  --bg-size: contain;            /* fits the whole painting in, uncropped */
+  --bg-repeat: no-repeat;
+
+  /* Horizontal placement. 50% is dead center; higher moves it right. */
+  --bg-position: 58% center;
 
   /* ART — painted divider used by .brush-rule. Set --divider-image to
      url("/assets/images/divider.png") and --divider-line to none. */
@@ -28,7 +32,7 @@
      (assets/images/logo.png). Sized by .brand__mark below. */
 
   /* Colors */
-  --paper: #ffffff;
+  --paper: #f5f9f4;   /* off-white, slight green tint */
   --ink: #1a1a1a;
   --ink-soft: #666666;
   --accent: #444444;
@@ -79,7 +83,7 @@ body::before {
   background-image: var(--bg-image);
   background-size: var(--bg-size);
   background-repeat: var(--bg-repeat);
-  background-position: center center;
+  background-position: var(--bg-position);
 }
 
 img { max-width: 100%; height: auto; display: block; }
