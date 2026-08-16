@@ -1,0 +1,25 @@
+# Jekyll build output — never commit this, GitHub rebuilds it for you
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby
+Gemfile.lock
+vendor/
+
+# macOS junk (Dropbox loves making these)
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor
+.vscode/
+*.swp
+
+# Working art files — keep the big originals out of the repo.
+# Export flattened .png / .jpg into assets/images/ instead.
+*.psd
+*.tif
+*.tiff

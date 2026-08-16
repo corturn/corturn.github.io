@@ -1,0 +1,19 @@
+<footer class="site-footer">
+
+  {%- comment -%}
+    WATERCOLOR SLOT — a painted brushstroke or torn-paper edge used as a divider.
+    Save as assets/images/divider.png (wide and short, transparent background).
+    This same element is available anywhere as: <div class="brush-rule"></div>
+  {%- endcomment -%}
+  <div class="brush-rule" role="presentation"></div>
+
+  <p class="site-footer__contact">
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </p>
+
+  <p class="site-footer__fine">
+    &copy; {{ 'now' | date: "%Y" }} {{ site.title }}.
+    <a href="{{ '/feed.xml' | relative_url }}">Subscribe to the blog</a>
+  </p>
+
+</footer>

@@ -1,0 +1,37 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<div class="prose">
+  <h1>Lorem ipsum</h1>
+  <p class="lead">
+    Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua.
+  </p>
+</div>
+
+{%- comment -%}
+  This list builds itself from the files in _posts/. You never edit this
+  page to add a post.
+{%- endcomment -%}
+
+<ul class="post-list">
+  {%- for post in site.posts %}
+    <li>
+      <h2 class="post-list__title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="post-list__meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        {%- if post.tags.size > 0 %}
+          {%- for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor -%}
+        {%- endif %}
+      </p>
+      <p class="post-list__excerpt">{{ post.excerpt | strip_html | truncatewords: 45 }}</p>
+    </li>
+  {%- else %}
+    <li><p>Lorem ipsum dolor sit amet.</p></li>
+  {%- endfor %}
+</ul>

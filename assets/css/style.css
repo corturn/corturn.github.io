@@ -1,0 +1,385 @@
+/* ============================================================================
+   PLACEHOLDER STYLESHEET
+
+   Neutral, unstyled-on-purpose scaffolding. Every color, font, and dimension
+   is a variable in the :root block below — replace them with yours.
+
+   Search for "ART" to find the three places your paintings plug in.
+   ========================================================================= */
+
+
+/* ============================================================================
+   1. VARIABLES — replace these
+   ========================================================================= */
+
+:root {
+
+  /* ART — painted background. Set to url("/assets/images/background.jpg") */
+  --bg-image: none;
+  --bg-size: cover;              /* or a length like 400px to tile it */
+  --bg-repeat: no-repeat;        /* `repeat` if tiling */
+
+  /* ART — painted divider used by .brush-rule. Set --divider-image to
+     url("/assets/images/divider.png") and --divider-line to none. */
+  --divider-image: none;
+  --divider-line: linear-gradient(to right, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+
+  /* ART — painted logo is an <img> in _includes/header.html
+     (assets/images/logo.png). Sized by .brand__mark below. */
+
+  /* Colors */
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #666666;
+  --accent: #444444;
+  --accent-deep: #000000;
+  --rule: rgba(0, 0, 0, 0.15);
+
+  /* Opacity of the page's background sheet, over the painted background.
+     1 = opaque, 0 = fully transparent. */
+  --veil: 0.9;
+
+  /* Fonts. If you add a webfont, add its <link> in _layouts/default.html. */
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-display: Georgia, "Times New Roman", serif;
+
+  /* Layout */
+  --page-max: 62rem;    /* overall content width */
+  --measure: 36rem;     /* paragraph reading width */
+  --radius: 0px;
+}
+
+
+/* ============================================================================
+   2. BASE
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+/* Background art gets its own fixed layer so it doesn't stretch or repeat
+   oddly on long pages. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--paper);
+  background-image: var(--bg-image);
+  background-size: var(--bg-size);
+  background-repeat: var(--bg-repeat);
+  background-position: center center;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent-deep); text-underline-offset: 0.18em; }
+a:hover { color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+
+
+/* ============================================================================
+   3. TYPOGRAPHY
+   ========================================================================= */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem); }
+h2 { font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem); margin-top: 2em; }
+h3 { font-size: 1.1875rem; margin-top: 1.8em; }
+
+p, ul, ol, blockquote { margin: 0 0 1.1em; }
+
+/* Wraps written content and holds it to a readable line length. */
+.prose { max-width: var(--measure); }
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-soft);
+}
+
+.lead { font-size: 1.15em; line-height: 1.5; color: var(--ink-soft); }
+
+hr { border: 0; height: 1px; background: var(--rule); margin: 2.5rem 0; }
+
+pre, code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.9em;
+}
+code { background: rgba(0, 0, 0, 0.06); padding: 0.1em 0.35em; }
+pre { overflow-x: auto; padding: 1rem; background: rgba(0, 0, 0, 0.04); }
+pre code { background: none; padding: 0; }
+
+
+/* ============================================================================
+   4. HEADER & NAV
+   ========================================================================= */
+
+.site-header {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; color: inherit; }
+
+/* ART — painted logo. Removes itself if the file isn't there yet. */
+.brand__mark { width: clamp(2.75rem, 6vw, 3.75rem); height: auto; flex-shrink: 0; }
+
+.brand__text { display: flex; flex-direction: column; }
+.brand__name { font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem); line-height: 1.1; }
+.brand__tagline { font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0.3em; }
+
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1.5rem; }
+
+.site-nav a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0.4rem 0;
+  border-bottom: 1.5px solid transparent;
+}
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+
+/* ============================================================================
+   5. PAGE CONTAINER
+   ========================================================================= */
+
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto 4rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 3.5rem);
+  background-color: rgb(from var(--paper) r g b / var(--veil));
+  border-radius: var(--radius);
+}
+
+/* Older browsers don't support the rgb(from ...) syntax; they get a solid
+   background instead. */
+@supports not (background-color: rgb(from white r g b / 50%)) {
+  .page { background-color: var(--paper); }
+}
+
+
+/* ============================================================================
+   6. HOME PAGE
+   ========================================================================= */
+
+.hero { max-width: var(--measure); }
+.hero h1 { margin-bottom: 0.35em; }
+.hero .lead { margin-bottom: 1.75rem; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.7em 1.6em;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent-deep);
+  background: var(--accent-deep);
+  color: var(--paper);
+}
+.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+.btn--quiet { background: transparent; color: var(--accent-deep); }
+.btn--quiet:hover { background: var(--accent-deep); color: var(--paper); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card { margin: 0; }
+
+/* ART — painted icons. */
+.card__icon { width: 4.5rem; height: 4.5rem; object-fit: contain; margin-bottom: 0.9rem; }
+
+.card h3 { margin: 0 0 0.4em; font-size: 1.125rem; }
+.card p { color: var(--ink-soft); margin: 0; font-size: 0.95em; }
+
+
+/* ============================================================================
+   7. FORM (only used if enabled in contact.md)
+   ========================================================================= */
+
+.form { max-width: var(--measure); margin-top: 2rem; }
+
+.form label {
+  display: block;
+  margin: 1.25rem 0 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.form input, .form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.form input:focus, .form textarea:focus { border-color: var(--accent); background: #fff; }
+.form textarea { resize: vertical; }
+.form .btn { margin-top: 1.5rem; cursor: pointer; }
+
+
+/* ============================================================================
+   8. BLOG
+   ========================================================================= */
+
+.post-list { list-style: none; margin: 2rem 0 0; padding: 0; }
+.post-list > li + li { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+
+.post-list__title { font-family: var(--font-display); font-size: 1.375rem; line-height: 1.2; margin: 0 0 0.3em; }
+.post-list__title a { text-decoration: none; color: var(--ink); }
+.post-list__title a:hover { color: var(--accent-deep); }
+
+.post-list__meta, .post__meta {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 0.6em;
+}
+
+.post-list__excerpt { max-width: var(--measure); margin: 0; color: var(--ink-soft); }
+
+.post__header { margin-bottom: 2rem; }
+.post__title { margin-bottom: 0.3em; }
+.post__meta { margin-bottom: 0; }
+.post__image { margin: 0 0 2rem; border-radius: var(--radius); }
+
+.tag { display: inline-block; margin-left: 0.75em; padding-left: 0.75em; border-left: 1px solid var(--rule); }
+
+.post__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.post__nav-link {
+  max-width: 18rem;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.post__nav-link:hover { color: var(--accent-deep); }
+.post__nav-link--next { margin-left: auto; text-align: right; }
+
+.post__nav-link span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35em;
+}
+
+
+/* ============================================================================
+   9. FOOTER
+   ========================================================================= */
+
+.site-footer {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+.site-footer p { margin: 0.5em 0; }
+.site-footer__contact { font-size: 1rem; }
+.site-footer__fine { font-size: 0.8rem; }
+
+
+/* ============================================================================
+   10. UTILITIES
+   ========================================================================= */
+
+/* ART — painted divider. See --divider-image above. */
+.brush-rule {
+  height: 2.5rem;
+  margin: 2.5rem auto;
+  max-width: 28rem;
+  background-image: var(--divider-image), var(--divider-line);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: contain, 100% 1px;
+}
+
+/* A painted icon dropped inline anywhere. */
+.icon { display: inline-block; width: 2.5rem; height: auto; vertical-align: middle; }
+.icon--lg { width: 5rem; }
+
+.text-center { text-align: center; }
+.text-center .prose, .text-center .hero { margin-inline: auto; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+
+/* ============================================================================
+   11. SMALL SCREENS & MOTION
+   ========================================================================= */
+
+@media (max-width: 40rem) {
+  .site-header { flex-direction: column; align-items: flex-start; padding-bottom: 1rem; }
+  .site-nav { gap: 0.25rem 1.15rem; }
+  .site-nav a { font-size: 0.85rem; }
+  .page { margin-bottom: 2.5rem; }
+  .post__nav-link--next { margin-left: 0; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

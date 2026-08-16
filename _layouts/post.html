@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<article class="post">
+
+  <header class="post__header">
+    <h1 class="post__title">{{ page.title }}</h1>
+    <p class="post__meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+      {%- if page.tags.size > 0 %}
+        <span class="post__tags">
+          {%- for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor -%}
+        </span>
+      {%- endif %}
+    </p>
+  </header>
+
+  {%- comment -%}
+    Optional header illustration. Add `image: /assets/images/your-painting.jpg`
+    to a post's front matter and it shows up here.
+  {%- endcomment -%}
+  {%- if page.image %}
+    <img class="post__image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: '' }}">
+  {%- endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <nav class="post__nav" aria-label="More posts">
+    {%- if page.previous %}
+      <a class="post__nav-link" href="{{ page.previous.url | relative_url }}">
+        <span>Previous</span>{{ page.previous.title }}
+      </a>
+    {%- endif %}
+    {%- if page.next %}
+      <a class="post__nav-link post__nav-link--next" href="{{ page.next.url | relative_url }}">
+        <span>Next</span>{{ page.next.title }}
+      </a>
+    {%- endif %}
+  </nav>
+
+</article>

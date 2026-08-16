@@ -1,0 +1,60 @@
+# ============================================================
+#  Site settings — edit these, they appear all over the site.
+#  NOTE: changes to this file only show up after a restart
+#  if you're running a local preview.
+# ============================================================
+
+title: Cory Turnbaugh
+tagline: English & College Essay Tutoring
+description: >-
+  One-on-one tutoring in English, writing, and the college essay —
+  plus a blog about the craft of writing.
+
+email: turnbaughcory@gmail.com
+
+# Leave both blank for a username.github.io site. Do not change
+# these unless you move the site to a project repo.
+url: ""
+baseurl: ""
+
+
+# ============================================================
+#  Navigation — add, remove, or reorder. This drives the menu
+#  on every page, so you only edit it here.
+# ============================================================
+
+nav:
+  - title: Tutoring
+    url: /tutoring/
+  - title: About
+    url: /about/
+  - title: Blog
+    url: /blog/
+  - title: Inquire
+    url: /contact/
+
+
+# ============================================================
+#  Build settings — you probably never need to touch these.
+# ============================================================
+
+plugins:
+  - jekyll-feed      # generates /feed.xml so people can subscribe
+  - jekyll-seo-tag   # generates page titles / social preview tags
+
+# Pretty URLs: /blog/my-post/ instead of /blog/2026/08/15/my-post.html
+permalink: /blog/:title/
+
+# Every post gets the "post" layout automatically.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
