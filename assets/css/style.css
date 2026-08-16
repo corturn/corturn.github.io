@@ -17,7 +17,10 @@
   /* ART — painted background: assets/images/background.png (has transparency,
      so the --paper color below shows through it and around it). */
   --bg-image: url("/assets/images/background.png");
-  --bg-size: contain;            /* fits the whole painting in, uncropped */
+  /* How wide the painting sits on the page. Lower it to shrink further.
+     The middle value scales with the window; the outer two are the floor
+     and ceiling so it stays sane on phones and on wide monitors. */
+  --bg-size: clamp(14rem, 32vw, 30rem);
   --bg-repeat: no-repeat;
 
   /* Horizontal placement. 50% is dead center; higher moves it right. */
