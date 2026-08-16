@@ -14,21 +14,29 @@
 
 :root {
 
-  /* ART — the painted book: assets/images/background.png
-     It hangs below the "Blog" nav item and follows it as the window
-     resizes, so it stays put no matter the screen size. */
+  /* ART — the page background: assets/images/background.png
+     Partly transparent, so --paper below shows through and around it. */
   --bg-image: url("/assets/images/background.png");
 
-  /* How wide the book is. Lower it to shrink further. The middle value
-     scales with the window; the outer two are the floor and ceiling so it
-     stays sane on phones and on wide monitors. */
-  --bg-size: clamp(9rem, 20vw, 18rem);
+  /* How wide it sits on the page. Lower to shrink. The middle value scales
+     with the window; the outer two are the floor and ceiling. */
+  --bg-size: clamp(10rem, 22vw, 20rem);
+
+  /* Where it sits. 50% is dead center; higher moves it right. */
+  --bg-position: 58% center;
+
+  /* ART — the book: assets/images/book.png
+     Hangs below the "Blog" nav item and follows it as the window resizes. */
+  --book-image: url("/assets/images/book.png");
+
+  /* How wide the book is. */
+  --book-size: clamp(5rem, 10vw, 8rem);
 
   /* Gap between the bottom of the nav text and the top of the book. */
-  --bg-gap: 1.25rem;
+  --book-gap: 1rem;
 
   /* Nudge left or right from centered-under-Blog. Negative moves left. */
-  --bg-nudge: 0rem;
+  --book-nudge: 0rem;
 
   /* ART — painted divider used by .brush-rule. Set --divider-image to
      url("/assets/images/divider.png") and --divider-line to none. */
@@ -80,6 +88,19 @@ body {
 
   /* Keeps the book from pushing a horizontal scrollbar on narrow windows. */
   overflow-x: clip;
+}
+
+/* The background painting gets its own fixed layer, so it stays put as the
+   page scrolls and doesn't stretch on long pages. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--bg-image);
+  background-size: var(--bg-size);
+  background-repeat: no-repeat;
+  background-position: var(--bg-position);
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -167,19 +188,19 @@ pre code { background: none; padding: 0; }
   border-bottom: 1.5px solid transparent;
 }
 
-/* ART — the painted book, hung below the "Blog" nav item. Anchoring it to
-   the link itself means it follows that link at any window width.
-   z-index: -1 keeps it behind the text on the inner pages. */
+/* ART — book.png, hung below the "Blog" nav item. Anchoring it to the link
+   itself means it follows that link at any window width.
+   z-index: -1 keeps it behind the text panel on the inner pages. */
 .nav-blog::after {
   content: "";
   position: absolute;
   z-index: -1;
-  top: calc(100% + var(--bg-gap));
+  top: calc(100% + var(--book-gap));
   left: 50%;
-  translate: calc(-50% + var(--bg-nudge)) 0;
-  width: var(--bg-size);
-  aspect-ratio: 1845 / 1663;   /* the PNG's true proportions */
-  background-image: var(--bg-image);
+  translate: calc(-50% + var(--book-nudge)) 0;
+  width: var(--book-size);
+  aspect-ratio: 3024 / 4032;   /* book.png's true proportions */
+  background-image: var(--book-image);
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
