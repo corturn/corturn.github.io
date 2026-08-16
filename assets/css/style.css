@@ -26,17 +26,19 @@
   --bg-position: 58% center;
 
   /* ART — the book: assets/images/book.png
-     Hangs below the "Blog" nav item and follows it as the window resizes. */
+     Sits behind the "Blog" nav item and follows it as the window resizes. */
   --book-image: url("/assets/images/book.png");
 
   /* How wide the book is. */
-  --book-size: clamp(5rem, 10vw, 8rem);
+  --book-size: clamp(3.5rem, 7vw, 5.5rem);
 
-  /* Gap between the bottom of the nav text and the top of the book. */
-  --book-gap: 1rem;
+  /* Nudge off dead-centre behind the word.
+     Positive x moves right, positive y moves down. */
+  --book-x: 0rem;
+  --book-y: 0rem;
 
-  /* Nudge left or right from centered-under-Blog. Negative moves left. */
-  --book-nudge: 0rem;
+  /* 1 is the full-strength painting; lower it if the word is hard to read. */
+  --book-opacity: 1;
 
   /* ART — painted divider used by .brush-rule. Set --divider-image to
      url("/assets/images/divider.png") and --divider-line to none. */
@@ -188,18 +190,19 @@ pre code { background: none; padding: 0; }
   border-bottom: 1.5px solid transparent;
 }
 
-/* ART — book.png, hung below the "Blog" nav item. Anchoring it to the link
-   itself means it follows that link at any window width.
-   z-index: -1 keeps it behind the text panel on the inner pages. */
+/* ART — book.png, sitting behind the "Blog" nav item. Anchoring it to the
+   link itself means it follows that link at any window width.
+   z-index: -1 puts it under the word, which stays readable on top. */
 .nav-blog::after {
   content: "";
   position: absolute;
   z-index: -1;
-  top: calc(100% + var(--book-gap));
+  top: 50%;
   left: 50%;
-  translate: calc(-50% + var(--book-nudge)) 0;
+  translate: calc(-50% + var(--book-x)) calc(-50% + var(--book-y));
   width: var(--book-size);
   aspect-ratio: 3024 / 4032;   /* book.png's true proportions */
+  opacity: var(--book-opacity);
   background-image: var(--book-image);
   background-size: contain;
   background-repeat: no-repeat;
