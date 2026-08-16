@@ -2,12 +2,11 @@
 
   <a class="brand" href="{{ '/' | relative_url }}">
     {%- comment -%}
-      WATERCOLOR SLOT — your hand-painted logo/monogram.
-      Save it as assets/images/logo.png (transparent background, ~600px wide).
-      To use plain text instead, delete the <img> line below.
+      To add a painted logo, put the file at assets/images/logo.png and
+      uncomment the line below. It's styled by .brand__mark in style.css.
+
+      <img class="brand__mark" src="{{ '/assets/images/logo.png' | relative_url }}" alt="">
     {%- endcomment -%}
-    <img class="brand__mark" src="{{ '/assets/images/logo.png' | relative_url }}" alt=""
-         onerror="this.remove()">
     <span class="brand__text">
       <span class="brand__name">{{ site.title }}</span>
       <span class="brand__tagline">{{ site.tagline }}</span>
