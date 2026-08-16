@@ -25,20 +25,17 @@
   /* Where it sits. 50% is dead center; higher moves it right. */
   --bg-position: 58% center;
 
-  /* ART — the book: assets/images/book.png
-     Sits behind the "Blog" nav item and follows it as the window resizes. */
-  --book-image: url("/assets/images/book.png");
+  /* ART — the paintings sitting behind the nav items. Defaults for all of
+     them; each individual one is assigned further down, under
+     "NAV ARTWORK". Any of these can be overridden per item there. */
+  --nav-art-size: clamp(5.5rem, 11vw, 9rem);   /* how wide */
+  --nav-art-x: 0rem;      /* positive moves right */
+  --nav-art-y: 0rem;      /* positive moves down */
+  --nav-art-opacity: 1;   /* lower if the word is hard to read */
 
-  /* How wide the book is. */
-  --book-size: clamp(3.5rem, 7vw, 5.5rem);
-
-  /* Nudge off dead-centre behind the word.
-     Positive x moves right, positive y moves down. */
-  --book-x: 0rem;
-  --book-y: 0rem;
-
-  /* 1 is the full-strength painting; lower it if the word is hard to read. */
-  --book-opacity: 1;
+  /* How far apart the nav items sit. Wider gaps give the paintings more
+     room to grow without colliding. */
+  --nav-gap: clamp(2rem, 5vw, 4rem);
 
   /* ART — painted divider used by .brush-rule. Set --divider-image to
      url("/assets/images/divider.png") and --divider-line to none. */
@@ -160,12 +157,14 @@ pre code { background: none; padding: 0; }
 .site-header {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: 1.75rem 1.5rem 1.25rem;
+  /* Generous top padding drops the bar down the page; generous bottom
+     padding leaves room for the paintings hanging below the nav text. */
+  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem clamp(3rem, 7vw, 5.5rem);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem 2rem;
+  gap: 1.5rem 2rem;
 }
 
 .brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; color: inherit; }
@@ -177,7 +176,7 @@ pre code { background: none; padding: 0; }
 .brand__name { font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem); line-height: 1.1; }
 .brand__tagline { font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0.3em; }
 
-.site-nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1.5rem; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 1.25rem var(--nav-gap); }
 
 .site-nav a {
   position: relative;
@@ -190,23 +189,61 @@ pre code { background: none; padding: 0; }
   border-bottom: 1.5px solid transparent;
 }
 
-/* ART — book.png, sitting behind the "Blog" nav item. Anchoring it to the
-   link itself means it follows that link at any window width.
-   z-index: -1 puts it under the word, which stays readable on top. */
-.nav-blog::after {
+/* ---------------------------------------------------------------------------
+   NAV ARTWORK
+
+   Each nav item can carry a painting behind its text. The rule below is
+   shared by all of them; a link with no --nav-art assigned simply shows
+   nothing, so you can add them one at a time.
+
+   TO ADD A PAINTING:
+     1. Put the file in assets/images/
+     2. Find its pixel dimensions (right-click the file > Get Info)
+     3. Fill in the matching line in the block underneath this rule
+
+   Anchoring the art to the link means it follows that link at any window
+   width. z-index: -1 puts it under the word, which stays readable on top.
+   ------------------------------------------------------------------------ */
+
+.site-nav a::after {
   content: "";
   position: absolute;
   z-index: -1;
   top: 50%;
   left: 50%;
-  translate: calc(-50% + var(--book-x)) calc(-50% + var(--book-y));
-  width: var(--book-size);
-  aspect-ratio: 3024 / 4032;   /* book.png's true proportions */
-  opacity: var(--book-opacity);
-  background-image: var(--book-image);
+  translate: calc(-50% + var(--nav-art-x)) calc(-50% + var(--nav-art-y));
+  width: var(--nav-art-size);
+  aspect-ratio: var(--nav-art-ratio, 1);
+  opacity: var(--nav-art-opacity);
+  background-image: var(--nav-art, none);
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
+}
+
+/* One block per nav item. --nav-art-ratio is the image's width / height in
+   pixels, which keeps it from being squashed. You can also override
+   --nav-art-size, --nav-art-x, --nav-art-y or --nav-art-opacity here to
+   tune a single painting without affecting the others. */
+
+.nav-blog {
+  --nav-art: url("/assets/images/book.png");
+  --nav-art-ratio: 3024 / 4032;
+}
+
+.nav-tutoring {
+  /* --nav-art: url("/assets/images/tutoring.png"); */
+  /* --nav-art-ratio: 0000 / 0000; */
+}
+
+.nav-about {
+  /* --nav-art: url("/assets/images/about.png"); */
+  /* --nav-art-ratio: 0000 / 0000; */
+}
+
+.nav-inquire {
+  /* --nav-art: url("/assets/images/inquire.png"); */
+  /* --nav-art-ratio: 0000 / 0000; */
 }
 .site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 .site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
